@@ -37,7 +37,13 @@
           </div>
         </section>
       </div>
-
+      <section v-if="winner" class="container">
+        <h2>Game Over!</h2>
+        <h3 v-if="winner === 'hero'">You defeated {{currentMonster.name}}</h3>
+        <h3 v-else-if="winner === 'monster'">You were destroyed by {{currentMonster.name}}</h3>
+        <h3 v-else>You and {{currentMonster.name}} perished</h3>
+        <button @click="startGame">Start New Game</button>
+      </section>
       <section id="controls">
         <button @click="attackMonster">ATTACK</button>
         <button :disabled="specialAttackActive" @click="specialHeroAttack">SPECIAL ATTACK</button>

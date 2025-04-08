@@ -7,34 +7,41 @@ const app = Vue.createApp({
                     name: 'Azure',
                     img: 'dragon-snake',
                     attackMax: 12,
-                    attackMin: 3
+                    attackMin: 5
                 },
                 {
                     name: 'Kraken',
                     img: 'sea-monster',
                     attackMax: 15,
-                    attackMin: 8
+                    attackMin: 6
                 },
                 {
                     name: 'Smaug',
                     img: 'dragon',
                     attackMax: 17,
-                    attackMin: 6
+                    attackMin: 8
                 },
             ],
             currentMonster: { name: '', img: '' },
 
             heroHealth: 100,
             monsterHealth: 100,
-            currentRound: 0
+            currentRound: 0,
+            winner: null
         }
     },
     computed: {
       monsterHealthStyle() {
+          if(this.monsterHealth < 0){
+              return { width: '0%'};
+          }
           return {width: this.monsterHealth + '%'}
       },
 
       heroHealthStyle() {
+          if(this.heroHealth < 0){
+              return { width: '0%'};
+          }
           return {width: this.heroHealth + '%'}
       },
 
@@ -42,7 +49,30 @@ const app = Vue.createApp({
           return this.currentRound % 3 !== 0
       }
     },
+    watch: {
+      heroHealth(value) {
+          if(value <= 0 && this.monsterHealth <= 0){
+              this.winner = 'draw'
+          }else if (value <= 0){
+              this.winner = 'monster'
+          }
+      },
+      monsterHealth(value) {
+          if(value <= 0 && this.heroHealth <= 0){
+              this.winner = 'draw'
+          }else if (value <= 0){
+              this.winner = 'hero'
+          }
+      }
+    },
     methods: {
+        startGame() {
+            this.heroHealth = 100;
+            this.monsterHealth = 100;
+            this.currentRound = 0;
+            this.winner = null;
+            this.getMonster()
+        },
         getMonster(){
             const randomIndex = Math.floor(Math.random() * this.monsters.length)
             this.currentMonster = this.monsters[randomIndex]
