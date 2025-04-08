@@ -26,14 +26,20 @@ const app = Vue.createApp({
 
             heroHealth: 100,
             monsterHealth: 100,
+            currentRound: 0
         }
     },
     computed: {
       monsterHealthStyle() {
           return {width: this.monsterHealth + '%'}
       },
+
       heroHealthStyle() {
           return {width: this.heroHealth + '%'}
+      },
+
+      specialAttackActive() {
+          return this.currentRound % 3 !== 0
       }
     },
     methods: {
@@ -43,15 +49,24 @@ const app = Vue.createApp({
         },
 
         attackMonster(){
+            this.currentRound++;
             const attackDamage = Math.floor(Math.random() * (12 - 5)) + 5;
             this.monsterHealth -= attackDamage;
             this.attackPlayer();
         },
+
         attackPlayer(){
             const attackDamage = Math.floor(
                 Math.random() * (this.currentMonster.attackMax - this.currentMonster.attackMin)
             ) + this.currentMonster.attackMin;
             this.heroHealth -= attackDamage;
+        },
+
+        specialHeroAttack() {
+            this.currentRound++;
+            const attackDamage = Math.floor(Math.random() * (25 - 10)) + 10;
+            this.monsterHealth -= attackDamage;
+            this.attackPlayer();
         }
     },
 
