@@ -73,6 +73,7 @@ const app = Vue.createApp({
             this.winner = null;
             this.getMonster()
         },
+
         getMonster(){
             const randomIndex = Math.floor(Math.random() * this.monsters.length)
             this.currentMonster = this.monsters[randomIndex]
@@ -108,6 +109,10 @@ const app = Vue.createApp({
                 this.heroHealth += healHero;
             }
             this.attackPlayer();
+        },
+
+        surrender() {
+            this.winner = 'monster';
         }
     },
 

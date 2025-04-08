@@ -44,11 +44,11 @@
         <h3 v-else>You and {{currentMonster.name}} perished</h3>
         <button @click="startGame">Start New Game</button>
       </section>
-      <section id="controls">
+      <section v-else id="controls">
         <button @click="attackMonster">ATTACK</button>
         <button :disabled="specialAttackActive" @click="specialHeroAttack">SPECIAL ATTACK</button>
         <button @click="healHero">HEAL</button>
-        <button>SURRENDER</button>
+        <button @click="surrender">SURRENDER</button>
       </section>
       <section id="log" class="container">
         <h2>Battle Log</h2>
