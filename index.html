@@ -24,22 +24,22 @@
           </div>
           <h2>{{ currentMonster.name }} Health</h2>
           <div class="healthbar">
-            <div class="healthbar__value"></div>
+            <div class="healthbar__value" :style="monsterHealthStyle"></div>
           </div>
         </section>
         <section id="player" class="container">
           <div class="image">
             <img src="./images/hero/hero.png" alt="">
           </div>
-          <h2>Your Health</h2>
+          <h2>Hero Health</h2>
           <div class="healthbar">
-            <div class="healthbar__value"></div>
+            <div class="healthbar__value" :style="heroHealthStyle"></div>
           </div>
         </section>
       </div>
 
       <section id="controls">
-        <button>ATTACK</button>
+        <button @click="attackMonster">ATTACK</button>
         <button>SPECIAL ATTACK</button>
         <button>HEAL</button>
         <button>SURRENDER</button>
