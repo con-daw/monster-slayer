@@ -1,0 +1,31 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+__MACOSX
+
+# PhpStorm / JetBrains IDEs
+.idea/
+*.iml
+*.iws
+
+# PhpStorm specific to PHP
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+
+# Composer vendor directory
+/vendor/
+
+# Node modules (if using Node.js or frontend build tools)
+node_modules/
+
+# Cache and logs
+*.log
+
